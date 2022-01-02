@@ -50,9 +50,14 @@ const app = {
   renderConfig: function () {
     repeatBtn.classList.toggle('active', this.isRepeat);
     randomBtn.classList.toggle('active', this.isRandom);
+  },
+  renderVolume: function () {
     volume.value = this.volume * 100;
     audio.volume = this.volume;
     this.setProgressColor(volume);
+    if (screen.width < 1400) {
+      volume.parentElement.style.display = 'none';
+    }
   },
   songs: [
     {
@@ -327,6 +332,9 @@ const app = {
 
     // Render playlist
     this.render();
+
+    // load volume từ storage và kiểm tra kích thước màn hình 
+    this.renderVolume();
   }
 }
 app.start();
